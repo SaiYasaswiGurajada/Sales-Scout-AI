@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+:root {
+  --bg-main: #F8F9FA;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #F1F5F9;
+  --bg-input: #ffffff;
+  --text-heading: #0B1F3A;
+  --text-main: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+}
+
+html.dark {
+  --bg-main: #0B132B;
+  --bg-card: #142242;
+  --bg-card-subtle: #1C2D54;
+  --bg-input: #0F1C38;
+  --text-heading: #F8FAFC;
+  --text-main: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --border-color: #2A3E66;
+  color-scheme: dark;
+}
+
+/* Global Dark Mode Overrides for Theme-Aware Contrast */
+html.dark {
+  background-color: #0B132B !important;
+  color: #F8FAFC !important;
+}
+
+html.dark .text-\[\#0B1F3A\] {
+  color: #F8FAFC;
+}
+
+html.dark .text-slate-900 {
+  color: #F8FAFC;
+}
+
+html.dark .text-slate-800 {
+  color: #F1F5F9;
+}
+
+html.dark .text-slate-700 {
+  color: #E2E8F0;
+}
+
+html.dark .text-slate-600 {
+  color: #CBD5E1;
+}
+
+html.dark .text-slate-500 {
+  color: #94A3B8;
+}
+
+html.dark .text-slate-400 {
+  color: #CBD5E1;
+}
+
+/* Cards & Surface Backdrops in Dark Mode */
+html.dark .bg-white {
+  background-color: #142242;
+  color: #F8FAFC;
+}
+
+html.dark .bg-slate-50,
+html.dark .bg-slate-50\/80,
+html.dark .bg-slate-50\/50,
+html.dark .bg-slate-50\/60,
+html.dark .bg-slate-50\/90 {
+  background-color: #1C2D54;
+  color: #F1F5F9;
+}
+
+html.dark .bg-slate-100,
+html.dark .bg-slate-100\/80,
+html.dark .bg-slate-100\/50,
+html.dark .bg-slate-100\/90 {
+  background-color: #223661;
+  color: #F8FAFC;
+}
+
+html.dark .bg-slate-200 {
+  background-color: #2A4070;
+  color: #F8FAFC;
+}
+
+html.dark .bg-teal-50,
+html.dark .bg-teal-50\/80 {
+  background-color: rgba(15, 45, 55, 0.8) !important;
+  color: #F8FAFC !important;
+}
+
+html.dark .border-slate-200,
+html.dark .border-slate-200\/80,
+html.dark .border-slate-100,
+html.dark .border-slate-300 {
+  border-color: #2A3E66;
+}
+
+/* Form Inputs, Textareas, and Selects in Dark Mode */
+html.dark input:not([type="checkbox"]),
+html.dark textarea,
+html.dark select {
+  background-color: #0F1C38 !important;
+  color: #F8FAFC !important;
+  border-color: #2A3E66 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748B !important;
+}
+
+/* Modal overlays in dark mode */
+html.dark .bg-slate-900\/60 {
+  background-color: rgba(3, 7, 18, 0.85) !important;
+}
+
+/* Preserve dark text contrast on bright gold/amber accent elements */
+html.dark .bg-\[\#F5A623\] .text-\[\#0B1F3A\],
+html.dark button.bg-\[\#F5A623\],
+html.dark .bg-\[\#F5A623\] span {
+  color: #0B1F3A !important;
+}
+
+/* Custom scrollbar for dropdowns and popovers */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}

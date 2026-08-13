@@ -1,0 +1,8 @@
+{
+  "name": "SalesScout AI",
+  "description": "AI-powered sales intelligence platform providing pre-meeting company and stakeholder briefings, calendar sync, CRM connectors, and AI sales chat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
