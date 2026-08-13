@@ -4,7 +4,7 @@
 > *Capstone Project for BITSoM (BITS School of Management)*
 > 
 
-Access the working project at [Link](https://aistudio.google.com/apps/351f85f7-c231-4adc-b794-7dfa2c8b2266?showAssistant=true&project=gen-lang-client-0938672128&showPreview=true)
+Access the working project at [AI Studio Link](https://aistudio.google.com/apps/351f85f7-c231-4adc-b794-7dfa2c8b2266?showAssistant=true&project=gen-lang-client-0938672128&showPreview=true)
 
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue?logo=typescript)
