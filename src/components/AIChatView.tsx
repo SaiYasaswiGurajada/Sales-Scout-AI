@@ -2,18 +2,27 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   MessageSquare,
   Send,
-  Sparkles,
   Bot,
   User,
+  Loader2,
+  Target,
+  History,
+  Sparkles,
+  Building2,
+  UserCircle,
+  Briefcase,
+  ChevronRight,
+  CheckCircle2,
+  ChevronDown,
   Trash2,
   Bookmark,
-  Building2,
   Zap,
   HelpCircle,
   Copy,
   Check
 } from 'lucide-react';
 import { BriefingData, ChatMessage } from '../types';
+import { chatWithAssistant } from '../lib/gemini';
 
 interface AIChatViewProps {
   briefings: BriefingData[];
@@ -71,23 +80,18 @@ export const AIChatView: React.FC<AIChatViewProps> = ({
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: query,
-          briefingContext: selectedBriefing,
-          recentBriefings: briefings.slice(0, 5),
-          chatHistory: messages.slice(-6),
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch AI response');
+      const apiKey = localStorage.getItem('geminiApiKey');
+      if (!apiKey) {
+        throw new Error('Please enter your Gemini API Key in Account Settings to use the AI chat.');
       }
 
-      const data = await response.json();
-      const aiReply = data.reply || 'Here is your sales intelligence advice based on the context provided.';
+      const aiReply = await chatWithAssistant(
+        apiKey,
+        query,
+        selectedBriefing,
+        briefings.slice(0, 5),
+        messages.slice(-6)
+      );
 
       const aiMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),

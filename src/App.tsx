@@ -28,6 +28,7 @@ import {
 } from './types';
 import { SAMPLE_BRIEFINGS } from './data/sampleBriefings';
 import { AlertCircle } from 'lucide-react';
+import { generateBriefing, refineBriefing } from './lib/gemini';
 
 export default function App() {
   // Demo Mode State
@@ -229,19 +230,12 @@ export default function App() {
     setCurrentTab('search');
 
     try {
-      const response = await fetch('/api/generate-briefing', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...input, dataTimeframe }),
-      });
-
-      const json = await response.json();
-
-      if (!response.ok || !json.success) {
-        throw new Error(json.error || 'Failed to generate briefing.');
+      const apiKey = localStorage.getItem('geminiApiKey');
+      if (!apiKey) {
+        throw new Error('Please enter your Gemini API Key in Account Settings to use AI intelligence generation.');
       }
 
-      const newBriefing: BriefingData = json.data;
+      const newBriefing: BriefingData = await generateBriefing(apiKey, { ...input, dataTimeframe });
 
       setBriefings((prev) => [newBriefing, ...prev]);
       setActiveBriefing(newBriefing);
@@ -264,22 +258,12 @@ export default function App() {
     setErrorMessage(null);
 
     try {
-      const response = await fetch('/api/refine-briefing', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          existingBriefing: activeBriefing,
-          customInstruction: instruction,
-        }),
-      });
-
-      const json = await response.json();
-
-      if (!response.ok || !json.success) {
-        throw new Error(json.error || 'Failed to refine briefing.');
+      const apiKey = localStorage.getItem('geminiApiKey');
+      if (!apiKey) {
+        throw new Error('Please enter your Gemini API Key in Account Settings to refine briefings.');
       }
 
-      const updatedBriefing: BriefingData = json.data;
+      const updatedBriefing: BriefingData = await refineBriefing(apiKey, activeBriefing, instruction);
 
       setBriefings((prev) =>
         prev.map((b) => (b.id === activeBriefing.id ? updatedBriefing : b))

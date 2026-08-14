@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Settings, Clock, Bell, Link2, Calendar, CheckCircle2, Save, Video, Shield } from 'lucide-react';
+import { X, Settings, Clock, Bell, Link2, Calendar, CheckCircle2, Save, Video, Shield, Key } from 'lucide-react';
 import { UserProfile } from '../types';
 
 interface AccountSettingsModalProps {
@@ -29,6 +29,9 @@ export const AccountSettingsModal: React.FC<AccountSettingsModalProps> = ({
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [calendarSyncAlerts, setCalendarSyncAlerts] = useState(true);
   const [teamDigest, setTeamDigest] = useState(true);
+  const [geminiApiKey, setGeminiApiKey] = useState<string>(
+    localStorage.getItem('geminiApiKey') || ''
+  );
   const [isSaved, setIsSaved] = useState(false);
 
   if (!isOpen) return null;
@@ -45,6 +48,11 @@ export const AccountSettingsModal: React.FC<AccountSettingsModalProps> = ({
     }
     if (onSaveSettings) {
       onSaveSettings({ defaultTimeframe });
+    }
+    if (geminiApiKey.trim()) {
+      localStorage.setItem('geminiApiKey', geminiApiKey.trim());
+    } else {
+      localStorage.removeItem('geminiApiKey');
     }
     setIsSaved(true);
     setTimeout(() => {
@@ -108,6 +116,22 @@ export const AccountSettingsModal: React.FC<AccountSettingsModalProps> = ({
               <option value="24h">24 Hours Before Meeting</option>
               <option value="48h">48 Hours Before Meeting</option>
             </select>
+          </div>
+
+          {/* Gemini API Key */}
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1 flex items-center gap-1.5">
+              <Key className="w-3.5 h-3.5 text-[#1FA9A0]" />
+              <span>Gemini API Key</span>
+            </label>
+            <p className="text-[11px] text-slate-500 mb-2">Required for AI intelligence generation</p>
+            <input
+              type="password"
+              placeholder="AIzaSy..."
+              value={geminiApiKey}
+              onChange={(e) => setGeminiApiKey(e.target.value)}
+              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:ring-2 focus:ring-[#1FA9A0] focus:outline-none"
+            />
           </div>
 
           {/* Notification Preferences */}
