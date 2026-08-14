@@ -82,7 +82,7 @@ export const AIChatView: React.FC<AIChatViewProps> = ({
     try {
       const apiKey = localStorage.getItem('geminiApiKey');
       if (!apiKey) {
-        throw new Error('Please enter your Gemini API Key in Account Settings to use the AI chat.');
+        throw new Error('Missing Gemini API Key! Please click your profile avatar in the top right and open "Account Settings" to add your API key before using the AI chat.');
       }
 
       const aiReply = await chatWithAssistant(

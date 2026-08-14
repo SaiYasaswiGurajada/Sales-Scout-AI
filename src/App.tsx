@@ -232,7 +232,7 @@ export default function App() {
     try {
       const apiKey = localStorage.getItem('geminiApiKey');
       if (!apiKey) {
-        throw new Error('Please enter your Gemini API Key in Account Settings to use AI intelligence generation.');
+        throw new Error('Missing Gemini API Key! Please click your profile avatar in the top right and open "Account Settings" to add your API key before generating briefings.');
       }
 
       const newBriefing: BriefingData = await generateBriefing(apiKey, { ...input, dataTimeframe });
@@ -260,7 +260,7 @@ export default function App() {
     try {
       const apiKey = localStorage.getItem('geminiApiKey');
       if (!apiKey) {
-        throw new Error('Please enter your Gemini API Key in Account Settings to refine briefings.');
+        throw new Error('Missing Gemini API Key! Please click your profile avatar in the top right and open "Account Settings" to add your API key before refining briefings.');
       }
 
       const updatedBriefing: BriefingData = await refineBriefing(apiKey, activeBriefing, instruction);

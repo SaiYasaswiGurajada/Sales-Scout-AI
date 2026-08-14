@@ -3,7 +3,7 @@ import { GoogleGenAI, Type } from "@google/genai";
 // Helper to initialize GenAI client with user-provided API key
 function getGenAI(apiKey: string) {
   if (!apiKey) {
-    throw new Error("Gemini API key is required. Please set it in Account Settings.");
+    throw new Error('Missing Gemini API Key! Please click your profile avatar in the top right and open "Account Settings" to add your API key.');
   }
   return new GoogleGenAI({
     apiKey,
